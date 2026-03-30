@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Survival Test | 2026 개발자 생존 지수 진단</title>
+  <meta name="description" content="AI 시대, 당신의 개발자 생존 확률을 확인하고 아키텍트로서의 역량을 진단해보세요.">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">
+        <a href="/" onclick="resetTest(); return false;">
+          <img src="logo.png" alt="AI Survival Test 로고" class="nav-logo" />
+        </a>
+      </div>
+      <button class="link-btn" onclick="startTest()">진단하기</button>
+    </div>
+  </nav>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">2026 SPECIAL REPORT</span>
+          <h1>당신은 AI에 대체될 것인가,<br />AI를 지배할 것인가.</h1>
+          <p>
+            앞으로의 개발자 생존은 '코드'가 아닌 '설계'와 'AI 활용력'에 달려있습니다.
+            당신의 현재 위치를 진단하고 미래를 준비하세요.
+          </p>
+          <button class="primary-btn" onclick="startTest()">지금 바로 진단 시작</button>
+        </div>
+      </div>
+    </section>
+
+  <div class="result_container">
+    <section id="test" class="test hidden" aria-live="polite">
+      <div class="container test-wrap">
+        <div class="test-head">
+          <p id="progressText" class="progress-text"></p>
+          <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="progressBar" class="progress-bar"></div>
+          </div>
+          <h2 id="question" class="question"></h2>
+        </div>
+        <div id="answers" class="answers"></div>
+      </div>
+    </section>
+
+    <section id="result" class="result hidden">
+      <div class="container result-wrap">
+        <header class="result-header">
+          <span class="result-kicker">Diagnosis Complete</span>
+          <h1 id="score" class="score">0%</h1>
+          <p class="result-title">당신의 AI 시대 생존 확률입니다.</p>
+        </header>
+
+        <article class="analysis">
+          <h3>아키텍트의 분석 결과</h3>
+          <div id="analysisText" class="analysis-content"></div>
+        </article>
+
+        <div class="result-actions" style="margin-top: 30px;">
+          <button class="primary-btn dark" onclick="resetTest()">테스트 다시하기</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  </main>
+
+  <section id="data-report" class="data-report">
+      <div class="container">
+        <div class="report-header">
+          <span class="eyebrow">MARKET DATA 2026</span>
+          <h2>AI 시대의 직무 변화 리포트</h2>
+        </div>
+
+       <div class="chart-layout-grid">
+  <div class="chart-card full-width-chart">
+    <h4>2026 핵심 역량 지수</h4>
+    <div class="chart-container">
+      <canvas id="barChart"></canvas> 
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <h4>연도별 직무 자동화 가속도</h4>
+    <canvas id="lineChart"></canvas>
+  </div>
+
+  <div class="chart-main-doughnut">
+    <div class="chart-card tall">
+      <h4>AI가 직무에 미치는 영향도</h4>
+      <div class="doughnut-wrapper">
+        <canvas id="impactChart"></canvas>
+        <div class="doughnut-center-text">
+          <span class="percent">72%</span>
+          <span class="label">자동화</span>
+        </div>
+      </div>
+      <div class="chart-info-box">
+        <p>단순 코딩 업무의 <strong>72%</strong>는 AI로 대체되지만, <strong>28%의 설계 역량</strong>이 전체 가치의 80%를 결정합니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+  </section>
+
+<footer class="footer">
+  <section class="footer-awards">
+    <div class="container awards-grid">
+      <div class="award-item">
+        <div class="award-icon">🏆</div>
+        <div class="award-text">
+          <strong>2026 AI 산업 혁신상</strong>
+          <p>사회적 통합 부문 대상 수상 (SICAS 프로젝트)</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🛡️</div>
+        <div class="award-text">
+          <strong>데이터 보안 인증</strong>
+          <p>사용자 개인정보 보호 및 암호화 기술 적용</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">📈</div>
+        <div class="award-text">
+          <strong>고객 만족도 1위</strong>
+          <p>커리어 분석 서비스 부문 (K-CSI 조사 기준)</p>
+        </div>
+      </div>
+      <div class="award-item">
+        <div class="award-icon">🤝</div>
+        <div class="award-text">
+          <strong>고용노동부 협력</strong>
+          <p>AI 시대 일자리 변화 대응 솔루션 선정</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-bottom">
+    <div class="container footer-inner">
+      <div class="footer-info">
+        <div class="footer-logo-wrapper">
+            <img src="logo.png" alt="SICAS 로고" class="footer-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <span class="logo-text" style="display:none; font-size: 1.5rem; font-weight: 800; margin-bottom: 20px;">SICAS</span>
+        </div>
+        
+        <nav class="footer-links">
+          <a href="javascript:void(0)" onclick="openModal('termsModal')">이용약관</a>
+          <a href="javascript:void(0)" onclick="openModal('privacyModal')">개인정보처리방침</a>
+          <a href="javascript:void(0)" onclick="openModal('bugReportModal')">버그제보</a>
+        </nav>
+        
+        <p class="copyright warning">본 사이트는 포트폴리오 목적으로 제작되었으므로 정확하지 않은 정보를 제공할 수 있습니다.</p>
+        <p class="copyright">COPYRIGHT © 2026 SICAS. ALL RIGHTS RESERVED.</p>
+      </div>
+      
+      <div class="footer-sns">
+        <a href="#">YT</a>
+        <a href="#">IG</a>
+        <a href="#">FB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="termsModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('termsModal')">&times;</span>
+    <h3>이용약관</h3>
+    <div class="modal-body">
+      <p>1.본 서비스는 AI 시대의 직무 변화를 시뮬레이션하기 위한 비상업적 포트폴리오 프로젝트이며,
+        제공되는 모든 진단 결과와 데이터는 가상의 시나리오에 기반합니다.</p>
+      <p>2.사용자는 본 서비스를 개인적인 참고 목적으로만 이용해야 하며,
+        결과값을 공신력 있는 지표로 오용하거나 무단으로 상업적 재배포를 하는 행위를 금지합니다.</p>
+      <p>3.본 사이트 내의 모든 디자인, 코드, 콘텐츠의 저작권은 SICAS에 있으며,
+        운영자의 허가 없는 무단 복제 및 변형 시 저작권법에 따라 처벌받을 수 있습니다.</p>
+      <p>4.운영자는 사전 고지 없이 서비스 내용을 수정하거나 중단할 수 있으며,
+        이용 과정에서 발생할 수 있는 정보의 부정확성이나 유무형의 손해에 대해 법적 책임을 지지 않습니다.</p>
+      <p>5.이용자는 본 서비스를 이용함으로써 위 사항들에 동의한 것으로 간주하며,
+        약관에 동의하지 않을 경우 서비스 이용을 중단해야 합니다.</p>
+    </div>
+  </div>
+</div>
+
+<div id="privacyModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('privacyModal')">&times;</span>
+    <h3>개인정보처리방침</h3>
+    <div class="modal-body">
+      <p>1.본 서비스는 사용자의 성명, 연락처 등 식별 가능한 개인정보를 서버에 전송하거나 별도의 데이터베이스에 저장하지 않는 것을 원칙으로 합니다.</p>
+      <p>2.모든 테스트 응답값과 진단 결과는 사용자의 로컬 브라우저 세션 내에서만 일시적으로 처리되며,
+        페이지를 새로고침하거나 브라우저 종료 시 모든 데이터는 즉시 파기됩니다.</p>
+      <p>3.서비스 최적화 및 오류 수정을 위해 브라우저의 로컬 스토리지 등을 활용할 수 있으나,
+        이 과정에서 개인을 특정할 수 있는 그 어떤 정보도 외부로 수집하지 않습니다.</p>
+      <p>4.사용자가 이메일을 통해 직접 '버그 제보'를 보낼 경우,
+        해당 정보는 오직 문의 대응 목적으로만 사용되며 목적 달성 후 지체 없이 영구 삭제됩니다.</p>
+      <p>5.개인정보와 관련된 문의나 권리 행사가 필요하신 경우 운영자 메일을 통해 요청하시면 처리해 드립니다.</p>
+    </div>
+  </div>
+</div>
+
+<div id="bugReportModal" class="modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('bugReportModal')">&times;</span>
+    <h3>버그 제보 및 문의</h3>
+    <div class="modal-body">
+      <p>서비스 이용 중 발생하는 버그나 문의사항은 아래 이메일로 보내주세요.</p>
+      <div class="email-copy-container">
+        <span id="bugEmail">codemake0902@gmail.com</span>
+        <button onclick="copyEmail()" class="copy-btn">복사하기</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
